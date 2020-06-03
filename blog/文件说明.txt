@@ -1,0 +1,34 @@
+middleware  -- 中间件
+    loginGuard.js   -- 登录界面的守卫
+model   -- 数据处理操作
+    connect.js  -- 连接数据库
+    user.js     -- 用户集合
+    article.js  -- 博客集合
+    comment.js  -- 评论集合
+public  -- 静态资源
+    admin   -- 用户
+    home    -- 博客
+    uploads -- 客户端文件上传保存到的位置
+route   -- 路由
+    admin      -- 用户功能文件夹
+        login.js    -- 用户登录功能
+        logout.js   -- 用户退出功能
+        userPage.js -- 获取所有用户功能
+        user-edit-fn -- 编辑用户功能
+        user-modify --用户修改功能
+    home       -- 博客前台功能文件夹
+        index.js    -- 博客首页功能
+        article.js  -- 博客文章展示功能
+    admin.js   -- 用户模块入口
+    home.js    -- 博客前台模块入口
+views   -- 模板
+    admin   -- 用户模块
+        common  --抽取的公共代码部分
+            header.art  -- 头部公共代码
+            aside.art   -- 侧边栏公共代码
+            layout.art  -- 模块的骨架文件
+    home    -- 博客模块
+        common  --抽取的公共代码部分
+            header.art  -- 头部公共代码
+            layout.art  -- 模块的骨架文件
+app.js  -- 入口文件

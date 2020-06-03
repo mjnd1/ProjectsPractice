@@ -1,0 +1,60 @@
+{{extend './common/layout.art'}}
+
+{{block 'main'}}
+    {{include './common/header.art'}}
+    <!-- /头部 -->
+    <!-- 主体内容 -->
+    <div class="content">
+        {{include './common/aside.art'}}
+        <div class="main">
+            <!-- 分类标题 -->
+            <div class="title">
+                <!-- {{button == '修改' ? 'block' : 'none'}}：判断是否是修改操作或者添加操作
+                    修改操作：显示ID
+                    添加操作：不显示ID
+                 -->
+                <h4 style="display: {{button == '修改' ? 'block' : 'none'}}">{{@user && user._id}}</h4>
+                <p class="tips">错误信息:{{message}}</p>
+            </div>
+
+            <!-- /分类标题 -->
+            <!-- action = /admin/user-edit
+                link：通过uesr-edit.js传入过来的
+            -->
+            <form class="form-container" action="{{link}}" method="post">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <!-- user:通过user-edit.js传入过来的 -->
+                    <input name="username" type="text" class="form-control" placeholder="请输入用户名" value="{{user && user.username}}">
+                </div>
+                <div class="form-group">
+                    <label>邮箱</label>
+                    <input type="email" class="form-control" placeholder="请输入邮箱地址" name="email" value="{{user && user.email}}">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" class="form-control" placeholder="请输入密码" name="password">
+                </div>
+                <div class="form-group">
+                    <label>角色</label>
+                    <select class="form-control" name="role">
+                        <!-- selected:选中当前框 -->
+                        <option value="normal" {{user && user.role == 'normal' ? 'selected' : ''}}>普通用户</option>
+                        <option value="admin" {{user && user.role == 'admin' ? 'selected' : ''}}>超级管理员</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>状态</label>
+                    <select class="form-control" name="state">
+                        <option value="0" {{user && user.state == '0' ? 'selected' : ''}}>启用</option>
+                        <option value="1" {{user && user.state == '1' ? 'selected' : ''}}>禁用</option>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <!-- button:通过uesr-edit.js传入过来的 -->
+                    <input type="submit" class="btn btn-primary" value="{{button}}">
+                </div>
+            </form>
+        </div>
+    </div>
+{{/block}}
