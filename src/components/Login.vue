@@ -45,14 +45,14 @@ export default {
   data() {
     return {
       loginForm: {
-        username: 'sdfds',
-        password: '123'
+        username: '',
+        password: ''
       },
       //   表单检验规则对象
       loginFormRules: {
         username: [
-          //required:是否是必填项，message:错误信息，
-          //trigger:在什么时候触发，blur：鼠标失去焦点的时候
+          // required:是否是必填项，message:错误信息，
+          // trigger:在什么时候触发，blur：鼠标失去焦点的时候
           { required: true, message: '请输入登录名称', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
@@ -64,10 +64,10 @@ export default {
     }
   },
   methods: {
-    //点击重置按钮，重置登录表单
+    // 点击重置按钮，重置登录表单
     resetLofinForm() {
-      //this指向Login.vue这个对象
-      //https://element.eleme.cn/#/zh-CN/component/form
+      // this指向Login.vue这个对象
+      // https://element.eleme.cn/#/zh-CN/component/form
       this.$refs.loginFormRef.resetFields()
     },
     login() {
@@ -81,7 +81,7 @@ export default {
         // console.log(valid);
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
-        if (res.meta.status != 200) {
+        if (res.meta.status !== 200) {
           // https://element.eleme.cn/#/zh-CN/component/message
           return this.$message({
             type: 'error',
@@ -92,11 +92,11 @@ export default {
           type: 'success',
           message: '登录成功'
         })
-        //1.登录成功之后的token，保存到客户端的sessionStorage中
-        //1.1项目中除了登录之外的其他API接口，必须在登录之后才能访问
-        //1.2 token 只应在当前网站打开期间生效，所以将token 保存在sessionStorage中
+        // 1.登录成功之后的token，保存到客户端的sessionStorage中
+        // 1.1项目中除了登录之外的其他API接口，必须在登录之后才能访问
+        // 1.2 token 只应在当前网站打开期间生效，所以将token 保存在sessionStorage中
         window.sessionStorage.setItem('token', res.data.token)
-        //2.通过编程式导航跳转到后台主页，路由地址是 /home
+        // 2.通过编程式导航跳转到后台主页，路由地址是 /home
         this.$router.push('/home')
       })
     }
